@@ -4,16 +4,17 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/davidarkless/go-pterodactyl/api"
-	"github.com/davidarkless/go-pterodactyl/appapi"
-	"github.com/davidarkless/go-pterodactyl/clientapi"
-	"github.com/davidarkless/go-pterodactyl/errors"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/davidarkless/go-pterodactyl/api"
+	"github.com/davidarkless/go-pterodactyl/appapi"
+	"github.com/davidarkless/go-pterodactyl/clientapi"
+	"github.com/davidarkless/go-pterodactyl/errors"
 )
 
 // ---------------------------------------------------------------------------
@@ -111,12 +112,12 @@ func WithTimeout(d time.Duration) Option {
 
 func NewClient(baseURL, apiKey string, keyType KeyType, opts ...Option) (*Client, error) {
 	// ----- token sanity check -------------------------------------------------
-	if keyType == ApplicationKey && !strings.HasPrefix(apiKey, "ptla_") {
-		return nil, fmt.Errorf("invalid application key: must start with 'ptla_'")
-	}
-	if keyType == ClientKey && !strings.HasPrefix(apiKey, "ptlc_") {
-		return nil, fmt.Errorf("invalid client key: must start with 'ptlc_'")
-	}
+	// if keyType == ApplicationKey && !strings.HasPrefix(apiKey, "ptla_") {
+	// 	return nil, fmt.Errorf("invalid application key: must start with 'ptla_'")
+	// }
+	// if keyType == ClientKey && !strings.HasPrefix(apiKey, "ptlc_") {
+	// 	return nil, fmt.Errorf("invalid client key: must start with 'ptlc_'")
+	// }
 
 	// ----- URL sanity check ---------------------------------------------------
 	if _, err := url.ParseRequestURI(baseURL); err != nil {
